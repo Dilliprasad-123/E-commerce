@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up — Apex Sports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          pitch: { 950: '#06100D', 900: '#0A1712', 850: '#0E1F19', 800: '#122A22', 700: '#1A3B30' },
+          apex: { 500: '#12B886', 400: '#2FD69A', 300: '#7CF0C4' },
+          lime: { 400: '#C6F135' },
+        },
+        fontFamily: {
+          display: ['"Bebas Neue"', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+      },
+    },
+  };
+</script>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="font-body bg-pitch-950 text-slate-100 min-h-screen field-lines">
+
+<header class="fixed top-0 inset-x-0 z-40 glass-nav border-b border-pitch-700/60">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center h-16">
+      <a href="index.html" class="flex items-center gap-2 group">
+        <span class="relative flex items-center justify-center w-9 h-9 rounded-md bg-gradient-to-br from-apex-500 to-apex-300 text-pitch-950">
+          <i data-lucide="zap" class="w-5 h-5" stroke-width="2.5"></i>
+        </span>
+        <span class="font-display text-2xl track-wide text-white">APEX<span class="text-apex-400">SPORTS</span></span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="min-h-screen flex items-center justify-center px-4 sm:px-6 pt-24 pb-16">
+  <div class="w-full max-w-md">
+    <div class="text-center mb-8">
+      <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-apex-500/10 border border-apex-500/40 text-apex-300 mb-4">
+        <i data-lucide="user-plus" class="w-5 h-5"></i>
+      </span>
+      <h1 class="font-display text-4xl text-white">CREATE ACCOUNT</h1>
+      <p id="signupContext" class="text-slate-500 mt-2">Join Apex Sports to save gear and check out.</p>
+    </div>
+
+    <div class="bg-pitch-900 border border-pitch-700 rounded-2xl p-6 sm:p-8">
+      <div id="formError" class="hidden mb-4 px-4 py-3 rounded-md bg-rose-500/10 border border-rose-500/40 text-rose-300 text-sm flex items-start gap-2">
+        <i data-lucide="alert-triangle" class="w-4 h-4 mt-0.5 shrink-0"></i>
+        <span id="formErrorText"></span>
+      </div>
+
+      <form id="signupForm" class="space-y-4" novalidate>
+        <div>
+          <label for="name" class="block text-sm font-medium text-slate-300 mb-1.5">Full name</label>
+          <input id="name" type="text" autocomplete="name" required placeholder="Jordan Rivera"
+            class="w-full px-4 py-3 rounded-md bg-pitch-950 border border-pitch-700 text-slate-100 placeholder:text-slate-600 focus:border-apex-400 transition-colors">
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-slate-300 mb-1.5">Email</label>
+          <input id="email" type="email" autocomplete="email" required placeholder="you@example.com"
+            class="w-full px-4 py-3 rounded-md bg-pitch-950 border border-pitch-700 text-slate-100 placeholder:text-slate-600 focus:border-apex-400 transition-colors">
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-medium text-slate-300 mb-1.5">Password</label>
+          <input id="password" type="password" autocomplete="new-password" required placeholder="At least 6 characters"
+            class="w-full px-4 py-3 rounded-md bg-pitch-950 border border-pitch-700 text-slate-100 placeholder:text-slate-600 focus:border-apex-400 transition-colors">
+        </div>
+        <button type="submit" class="w-full py-3 rounded-md bg-apex-500 text-pitch-950 font-bold hover:bg-apex-400 transition-colors flex items-center justify-center gap-2">
+          Create Account <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </form>
+    </div>
+
+    <p class="text-center text-sm text-slate-500 mt-6">
+      Already have an account?
+      <a id="signinLink" href="signin.html" class="text-apex-300 font-semibold hover:text-apex-400 transition-colors">Sign in</a>
+    </p>
+
+    <p class="text-center text-xs text-slate-700 mt-8 max-w-sm mx-auto leading-relaxed">
+      Demo accounts only — for coursework/prototyping. Credentials are stored in this browser's
+      localStorage, not on a server, so don't reuse a real password here.
+    </p>
+  </div>
+</main>
+
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/wishlist.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    lucide.createIcons();
+    const $ = (id) => document.getElementById(id);
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get("redirect");
+
+    if (redirect) {
+      $("signupContext").textContent = "Create an account to continue to checkout.";
+      $("signinLink").href = `signin.html?redirect=${encodeURIComponent(redirect)}`;
+    }
+
+    if (Auth.isLoggedIn()) {
+      window.location.href = redirect || "index.html";
+    }
+
+    function showError(msg) {
+      $("formErrorText").textContent = msg;
+      $("formError").classList.remove("hidden");
+    }
+
+    $("signupForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      $("formError").classList.add("hidden");
+      const result = Auth.signUp($("name").value, $("email").value, $("password").value);
+      if (!result.ok) {
+        showError(result.error);
+        return;
+      }
+      window.location.href = redirect || "index.html";
+    });
+  });
+</script>
+</body>
+</html>

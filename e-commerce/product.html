@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product — Apex Sports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          pitch: { 950: '#06100D', 900: '#0A1712', 850: '#0E1F19', 800: '#122A22', 700: '#1A3B30' },
+          apex: { 500: '#12B886', 400: '#2FD69A', 300: '#7CF0C4' },
+          lime: { 400: '#C6F135' },
+        },
+        fontFamily: {
+          display: ['"Bebas Neue"', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+      },
+    },
+  };
+</script>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="font-body bg-pitch-950 text-slate-100 min-h-screen">
+
+<!-- ===================== NAVBAR ===================== -->
+<header class="fixed top-0 inset-x-0 z-40 glass-nav border-b border-pitch-700/60">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 gap-2">
+      <a href="index.html" class="flex items-center gap-2 group shrink-0">
+        <span class="relative flex items-center justify-center w-9 h-9 rounded-md bg-gradient-to-br from-apex-500 to-apex-300 text-pitch-950">
+          <i data-lucide="zap" class="w-5 h-5" stroke-width="2.5"></i>
+        </span>
+        <span class="font-display text-2xl track-wide text-white">APEX<span class="text-apex-400">SPORTS</span></span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-300">
+        <a href="index.html#shop" class="hover:text-apex-300 transition-colors">Shop</a>
+        <a href="index.html#categories" class="hover:text-apex-300 transition-colors">Categories</a>
+        <a href="wishlist.html" class="hover:text-apex-300 transition-colors">Wishlist</a>
+        <a href="#" class="hover:text-apex-300 transition-colors">Deals</a>
+      </nav>
+
+      <div class="flex items-center gap-1 sm:gap-2">
+        <a href="wishlist.html" id="wishlistBtn" class="relative p-2 rounded-md hover:bg-pitch-800 transition-colors" aria-label="Open wishlist">
+          <i data-lucide="heart" class="w-5 h-5 text-slate-300"></i>
+          <span id="wishlistCount" class="hidden absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 flex items-center justify-center rounded-full bg-lime-400 text-pitch-950 text-[10px] font-bold font-mono">0</span>
+        </a>
+
+        <button id="cartBtn" class="relative p-2 rounded-md hover:bg-pitch-800 transition-colors" aria-label="Open cart">
+          <i data-lucide="shopping-bag" class="w-5 h-5 text-slate-300"></i>
+          <span id="cartCount" class="hidden absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 flex items-center justify-center rounded-full bg-lime-400 text-pitch-950 text-[10px] font-bold font-mono">0</span>
+        </button>
+
+        <div id="accountArea" class="relative"></div>
+
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-md hover:bg-pitch-800 transition-colors" aria-label="Toggle menu">
+          <i data-lucide="menu" class="w-6 h-6 text-slate-200"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobileMenu" class="md:hidden hidden border-t border-pitch-700/60 bg-pitch-900/95 px-4 py-4 space-y-3">
+    <a href="index.html#shop" class="block py-2 text-slate-200 font-medium">Shop</a>
+    <a href="index.html#categories" class="block py-2 text-slate-200 font-medium">Categories</a>
+    <a href="wishlist.html" class="block py-2 text-slate-200 font-medium">Wishlist</a>
+    <a href="#" class="block py-2 text-slate-200 font-medium">Deals</a>
+    <div id="mobileAccountArea" class="pt-3 border-t border-pitch-800"></div>
+  </div>
+</header>
+
+<!-- ===================== BREADCRUMB ===================== -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
+  <nav id="breadcrumb" class="text-sm text-slate-500 flex items-center gap-2 flex-wrap"></nav>
+</div>
+
+<!-- ===================== PRODUCT DETAIL (filled by js/detail.js) ===================== -->
+<main id="productDetail" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10"></main>
+
+<!-- ===================== NOT FOUND STATE ===================== -->
+<div id="notFound" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+  <i data-lucide="package-x" class="w-12 h-12 mx-auto text-slate-700 mb-4"></i>
+  <h1 class="font-display text-4xl text-white mb-2">PRODUCT NOT FOUND</h1>
+  <p class="text-slate-500 mb-6">That item isn't in our lineup. It may have been retired or the link is off.</p>
+  <a href="index.html#shop" class="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-apex-500 text-pitch-950 font-bold hover:bg-apex-400 transition-colors">
+    <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to the shop
+  </a>
+</div>
+
+<!-- ===================== RELATED PRODUCTS ===================== -->
+<section id="relatedSection" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+  <h2 class="font-display text-3xl text-white mb-6">YOU MIGHT ALSO NEED</h2>
+  <div id="relatedGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="border-t border-pitch-800 py-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2">
+      <span class="flex items-center justify-center w-7 h-7 rounded-md bg-gradient-to-br from-apex-500 to-apex-300 text-pitch-950">
+        <i data-lucide="zap" class="w-4 h-4" stroke-width="2.5"></i>
+      </span>
+      <span class="font-display text-lg track-wide text-white">APEX<span class="text-apex-400">SPORTS</span></span>
+    </div>
+    <p class="text-sm text-slate-500">© 2026 Apex Sports. Built for the game.</p>
+  </div>
+</footer>
+
+<!-- ===================== CART DRAWER (identical to index.html) ===================== -->
+<div id="cartOverlay" class="hidden fixed inset-0 z-50 bg-pitch-950/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+
+<aside id="cartDrawer" class="drawer-transition translate-x-full fixed top-0 right-0 z-50 h-full w-full sm:w-[420px] bg-pitch-900 border-l border-pitch-700 flex flex-col">
+  <div class="flex items-center justify-between px-6 py-5 border-b border-pitch-800">
+    <h3 class="font-display text-2xl text-white flex items-center gap-2">
+      <i data-lucide="shopping-bag" class="w-5 h-5 text-apex-400"></i> YOUR BAG
+    </h3>
+    <button id="cartCloseBtn" class="text-slate-500 hover:text-slate-200 transition-colors" aria-label="Close cart">
+      <i data-lucide="x" class="w-5 h-5"></i>
+    </button>
+  </div>
+
+  <div id="cartItems" class="flex-1 overflow-y-auto px-6 py-4 space-y-4"></div>
+
+  <div id="cartEmptyState" class="hidden flex-1 flex flex-col items-center justify-center px-6 text-center">
+    <i data-lucide="shopping-bag" class="w-12 h-12 text-slate-700 mb-4"></i>
+    <p class="text-slate-400 font-medium">Your bag is empty</p>
+    <p class="text-sm text-slate-600 mt-1">Add some gear to get started.</p>
+  </div>
+
+  <div id="cartFooter" class="border-t border-pitch-800 px-6 py-5 space-y-3">
+    <div class="flex justify-between text-sm text-slate-400">
+      <span>Subtotal</span>
+      <span id="cartSubtotal" class="font-mono text-slate-200">$0.00</span>
+    </div>
+    <div class="flex justify-between text-sm text-slate-400">
+      <span>Shipping</span>
+      <span id="cartShipping" class="font-mono text-slate-200">$0.00</span>
+    </div>
+    <div class="flex justify-between text-base font-bold text-white pt-2 border-t border-pitch-800">
+      <span>Total</span>
+      <span id="cartTotal" class="font-mono text-apex-300">$0.00</span>
+    </div>
+    <button id="checkoutBtn" class="w-full py-3 rounded-md bg-apex-500 text-pitch-950 font-bold hover:bg-apex-400 transition-colors flex items-center justify-center gap-2">
+      Checkout <i data-lucide="arrow-right" class="w-4 h-4"></i>
+    </button>
+  </div>
+</aside>
+
+<div id="toast" class="hidden fixed top-20 left-1/2 z-[60] px-5 py-3 rounded-lg bg-pitch-800 border border-apex-500/50 text-sm font-medium text-slate-100 shadow-xl flex items-center gap-2"></div>
+
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/wishlist.js"></script>
+<script src="js/detail.js"></script>
+<script src="js/ui.js"></script>
+</body>
+</html>

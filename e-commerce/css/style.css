@@ -1,0 +1,59 @@
+/* Apex Sports — shared styles across all pages */
+
+html { scroll-behavior: smooth; }
+body { background-color: #06100D; }
+
+.font-display { letter-spacing: 0.02em; }
+.track-wide { letter-spacing: 0.18em; }
+.track-widest { letter-spacing: 0.3em; }
+
+/* Scoreboard-style diagonal divider, used on hero panels */
+.diagonal-cut {
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+}
+
+/* Field line texture for hero sections */
+.field-lines {
+  background-image:
+    repeating-linear-gradient(90deg, rgba(124, 240, 196, 0.05) 0, rgba(124, 240, 196, 0.05) 1px, transparent 1px, transparent 120px);
+}
+
+.glass-nav {
+  background: rgba(6, 16, 13, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.card-hover {
+  transition: transform 0.35s cubic-bezier(.22, 1, .36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -15px rgba(18, 184, 134, 0.35);
+  border-color: rgba(47, 214, 154, 0.5);
+}
+
+.drawer-transition { transition: transform 0.4s cubic-bezier(.22, 1, .36, 1); }
+.chip-transition { transition: all 0.2s ease; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #0A1712; }
+::-webkit-scrollbar-thumb { background: #1A3B30; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #12B886; }
+
+input:focus-visible, button:focus-visible, a:focus-visible {
+  outline: 2px solid #7CF0C4;
+  outline-offset: 2px;
+}
+
+@keyframes toast-in {
+  from { transform: translateY(-16px) translateX(-50%); opacity: 0; }
+  to { transform: translateY(0) translateX(-50%); opacity: 1; }
+}
+.toast-in { animation: toast-in 0.3s cubic-bezier(.22, 1, .36, 1) forwards; }
+
+.scoreline { font-variant-numeric: tabular-nums; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

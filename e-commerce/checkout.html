@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — Apex Sports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          pitch: { 950: '#06100D', 900: '#0A1712', 850: '#0E1F19', 800: '#122A22', 700: '#1A3B30' },
+          apex: { 500: '#12B886', 400: '#2FD69A', 300: '#7CF0C4' },
+          lime: { 400: '#C6F135' },
+        },
+        fontFamily: {
+          display: ['"Bebas Neue"', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+      },
+    },
+  };
+</script>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="font-body bg-pitch-950 text-slate-100 min-h-screen">
+
+<header class="fixed top-0 inset-x-0 z-40 glass-nav border-b border-pitch-700/60">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-2 group">
+        <span class="relative flex items-center justify-center w-9 h-9 rounded-md bg-gradient-to-br from-apex-500 to-apex-300 text-pitch-950">
+          <i data-lucide="zap" class="w-5 h-5" stroke-width="2.5"></i>
+        </span>
+        <span class="font-display text-2xl track-wide text-white">APEX<span class="text-apex-400">SPORTS</span></span>
+      </a>
+      <a href="index.html#shop" class="text-sm font-medium text-slate-300 hover:text-apex-300 transition-colors flex items-center gap-1.5">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Continue shopping
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== CHECKOUT FORM + SUMMARY ===================== -->
+<main id="checkoutView" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24">
+  <h1 class="font-display text-4xl sm:text-5xl text-white mb-8">CHECKOUT</h1>
+
+  <div class="grid lg:grid-cols-5 gap-10">
+    <form id="checkoutForm" class="lg:col-span-3 space-y-8" novalidate>
+      <div>
+        <h2 class="font-display text-2xl text-white mb-4 flex items-center gap-2">
+          <i data-lucide="truck" class="w-5 h-5 text-apex-400"></i> SHIPPING ADDRESS
+        </h2>
+        <div class="bg-pitch-900 border border-pitch-700 rounded-2xl p-6 space-y-4">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="fullName" class="block text-sm font-medium text-slate-300 mb-1.5">Full name</label>
+              <input id="fullName" required class="w-full px-4 py-3 rounded-md bg-pitch-950 border border-pitch-700 text-slate-100 focus:border-apex-400 transition-colors">
+            </div>
+            <div>
+              <label for="phone" class="block text-sm font-medium text-slate-300 mb-1.5">Phone</label>
+              <input id="phone" type="tel" required class="w-full px-4 py-3 rounded-md bg-pitch-950 border border-pitch-700 text-slate-100 focus:border-apex-400 transition-colors">
+            </div>
+          </div>
+          <div>
+            <label for="address" class="block text-sm font-medium text-slate-300 mb-1.5">Address</label>
+            <input id="address" required class="w-full px-4 py-3 rounded-md bg-pitch-950 border border-pitch-700 text-slate-100 focus:border-apex-400 transition-colors">
+          </div>
+          <div class="grid sm:grid-cols-3 gap-4">
+            <div>
+              <label for="city" class="block text-sm font-medium text-slate-300 mb-1.5">City</label>
+              <input id="city" required class="w-full px-4 py-3 rounded-md bg-pitch-950 border border-pitch-700 text-slate-100 focus:border-apex-400 transition-colors">
+            </div>
+            <div>
+              <label for="state" class="block text-sm font-medium text-slate-300 mb-1.5">State / Region</label>
+              <input id="state" required class="w-full px-4 py-3 rounded-md bg-pitch-950 border border-pitch-700 text-slate-100 focus:border-apex-400 transition-colors">
+            </div>
+            <div>
+              <label for="zip" class="block text-sm font-medium text-slate-300 mb-1.5">ZIP / Postal</label>
+              <input id="zip" required class="w-full px-4 py-3 rounded-md bg-pitch-950 border border-pitch-700 text-slate-100 focus:border-apex-400 transition-colors">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="font-display text-2xl text-white mb-4 flex items-center gap-2">
+          <i data-lucide="credit-card" class="w-5 h-5 text-apex-400"></i> PAYMENT
+        </h2>
+        <div class="bg-pitch-900 border border-pitch-700 rounded-2xl p-6 space-y-4">
+          <p class="text-xs text-slate-500 -mt-1">Demo checkout — no real payment is processed and no card data leaves your browser.</p>
+          <div>
+            <label for="cardName" class="block text-sm font-medium text-slate-300 mb-1.5">Name on card</label>
+            <input id="cardName" required class="w-full px-4 py-3 rounded-md bg-pitch-950 border border-pitch-700 text-slate-100 focus:border-apex-400 transition-colors">
+          </div>
+          <div>
+            <label for="cardNumber" class="block text-sm font-medium text-slate-300 mb-1.5">Card number</label>
+            <input id="cardNumber" inputmode="numeric" placeholder="4242 4242 4242 4242" required class="w-full px-4 py-3 rounded-md bg-pitch-950 border border-pitch-700 text-slate-100 font-mono focus:border-apex-400 transition-colors">
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="cardExpiry" class="block text-sm font-medium text-slate-300 mb-1.5">Expiry (MM/YY)</label>
+              <input id="cardExpiry" placeholder="MM/YY" required class="w-full px-4 py-3 rounded-md bg-pitch-950 border border-pitch-700 text-slate-100 font-mono focus:border-apex-400 transition-colors">
+            </div>
+            <div>
+              <label for="cardCvc" class="block text-sm font-medium text-slate-300 mb-1.5">CVC</label>
+              <input id="cardCvc" inputmode="numeric" placeholder="123" required class="w-full px-4 py-3 rounded-md bg-pitch-950 border border-pitch-700 text-slate-100 font-mono focus:border-apex-400 transition-colors">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="checkoutError" class="hidden px-4 py-3 rounded-md bg-rose-500/10 border border-rose-500/40 text-rose-300 text-sm flex items-start gap-2">
+        <i data-lucide="alert-triangle" class="w-4 h-4 mt-0.5 shrink-0"></i>
+        <span id="checkoutErrorText"></span>
+      </div>
+
+      <button type="submit" class="w-full py-4 rounded-md bg-apex-500 text-pitch-950 font-bold hover:bg-apex-400 transition-colors flex items-center justify-center gap-2">
+        Place order <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </button>
+    </form>
+
+    <div class="lg:col-span-2">
+      <div class="bg-pitch-900 border border-pitch-700 rounded-2xl p-6 lg:sticky lg:top-24">
+        <h2 class="font-display text-2xl text-white mb-4">ORDER SUMMARY</h2>
+        <div id="summaryItems" class="space-y-3 max-h-80 overflow-y-auto pr-1"></div>
+        <div class="border-t border-pitch-800 mt-4 pt-4 space-y-2">
+          <div class="flex justify-between text-sm text-slate-400">
+            <span>Subtotal</span>
+            <span id="summarySubtotal" class="font-mono text-slate-200">$0.00</span>
+          </div>
+          <div class="flex justify-between text-sm text-slate-400">
+            <span>Shipping</span>
+            <span id="summaryShipping" class="font-mono text-slate-200">$0.00</span>
+          </div>
+          <div class="flex justify-between text-base font-bold text-white pt-2 border-t border-pitch-800">
+            <span>Total</span>
+            <span id="summaryTotal" class="font-mono text-apex-300">$0.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ===================== CONFIRMATION ===================== -->
+<main id="confirmationView" class="hidden max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24 text-center">
+  <span class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-apex-500/10 border border-apex-500/40 text-apex-300 mb-6">
+    <i data-lucide="check-circle" class="w-8 h-8"></i>
+  </span>
+  <h1 class="font-display text-4xl sm:text-5xl text-white mb-3">ORDER PLACED</h1>
+  <p class="text-slate-400 mb-1">Thanks<span id="confirmName"></span> — your order is confirmed.</p>
+  <p class="text-slate-500 text-sm font-mono mb-8">Order # <span id="confirmOrderId"></span></p>
+  <a href="index.html#shop" class="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-apex-500 text-pitch-950 font-bold hover:bg-apex-400 transition-colors">
+    Continue shopping <i data-lucide="arrow-right" class="w-4 h-4"></i>
+  </a>
+</main>
+
+<footer class="border-t border-pitch-800 py-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2">
+      <span class="flex items-center justify-center w-7 h-7 rounded-md bg-gradient-to-br from-apex-500 to-apex-300 text-pitch-950">
+        <i data-lucide="zap" class="w-4 h-4" stroke-width="2.5"></i>
+      </span>
+      <span class="font-display text-lg track-wide text-white">APEX<span class="text-apex-400">SPORTS</span></span>
+    </div>
+    <p class="text-sm text-slate-500">© 2026 Apex Sports. Built for the game.</p>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/wishlist.js"></script>
+<script src="js/checkout.js"></script>
+</body>
+</html>
